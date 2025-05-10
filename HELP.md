@@ -355,7 +355,3 @@ class DetalleRecetaActivity : AppCompatActivity() {
 }
 ```
 Pasos Finales Importantes:
-
-Copia y Pega: Reemplaza el contenido de tus archivos con el código que te he proporcionado. Asegúrate de que los package y los import coincidan con la estructura de tu proyecto.
-Limpia y Reconstruye: En Android Studio, ve a Build > Clean Project y luego Build > Rebuild Project. Esto asegura que todos los cambios se apliquen correctamente.
-Ejecuta la Aplicación: Prueba la aplicación en tu emulador o dispositivo.
