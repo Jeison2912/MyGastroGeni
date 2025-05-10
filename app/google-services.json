@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "670716560209",
+    "project_id": "mygastrogeni",
+    "storage_bucket": "mygastrogeni.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670716560209:android:77893bf781671be31d0970",
+        "android_client_info": {
+          "package_name": "com.example.mygastrogeni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN5cdyw34daxXUXDP24avhIaBaCxhwoSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
