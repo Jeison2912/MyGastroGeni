@@ -99,19 +99,3 @@ Este proyecto de Frontend (la aplicación Android) se integra con **Firebase Fir
 * **Jeison Steven Niño Rojas**
 
 ---
-
-### Información de la Plantilla Base
-
-Este repositorio ha sido inicializado utilizando una plantilla de proyecto que incluye una estructura base y configuraciones para facilitar la integración continua y las pruebas automatizadas.
-
-* **Estructura de Carpetas:** Organizada para una mejor gestión de la documentación y el código.
-* **Integración con GitHub Actions:**
-    * **Integración Continua (CI):** Automatiza la compilación y verificación del código con cada push o pull request.
-    * **Pruebas Automatizadas:** Configurado para usar Firebase Test Lab, permitiendo ejecutar pruebas en una variedad de dispositivos reales y virtuales en la nube.
-
-#### Cómo Usar Esta Plantilla (para futuros proyectos)
-
-1.  Cree un nuevo repositorio en GitHub [usando este como plantilla](https://docs.github.com/es/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-2.  Clone el repositorio recién creado a su máquina local.
-3.  Puede empezar modificando el archivo `README.md` para describir su nuevo proyecto.
-4.  Al crear un nuevo proyecto Android en Android Studio, seleccione la carpeta donde clonó este repositorio como la ubicación raíz de su proyecto para que la estructura de la plantilla se integre.
