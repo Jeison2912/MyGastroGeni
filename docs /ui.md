@@ -1,58 +1,42 @@
-# Diseño de logo
+## 🎨 Diseño e Interfaz de Usuario (UI/UX)
 
-La aplicación tendrá el siguiente logo 
+A continuación, se presentan las pantallas clave de la aplicación "GastroGenius", mostrando su interfaz de usuario y la experiencia de interacción principal:
 
-1. Bandeja de aplicaciones:
-   -Muestra el logo y el nombre de la app
-   
+### 1. Icono y Pantalla de Acceso
 
-(![image](https://github.com/user-attachments/assets/7ad84ab4-6680-4111-b127-1e6a722f3a39)
+* **Icono de la Aplicación:** Así se ve el logo y el nombre de "GastroGenius" en la bandeja de aplicaciones del dispositivo.
 
+    ![Icono de la Aplicación en la bandeja](https://github.com/user-attachments/assets/7ad84ab4-6680-4111-b127-1e6a722f3a39)
 
-2. Pantalla de inicio:
--Muestra el logo y el nombre de la app.
--Botón para ingresar o registrarse
+* **Pantalla de Inicio / Login:** La primera interacción del usuario al abrir la aplicación.
+    * Muestra el logo y el nombre de la app.
+    * Ofrece opciones claras para iniciar sesión o registrarse.
 
-![image](https://github.com/user-attachments/assets/2774cfa2-0dfc-4b46-a281-7da263756ea6)
-
-3. Pantalla de Búsqueda de Recetas:
--Barra de búsqueda por nombre, ingredientes o tipo de comida.
--Filtros para refinar resultados.
-
-![image](https://github.com/user-attachments/assets/1e96eddc-9eba-4689-ac07-f01951c7ff79)
-
-5. Pantalla de Recetas Favoritas
-   -Lista de recetas guardadas por el usuario.
-   -Opciones para eliminar o acceder a la receta detallada.
-   
-![image](https://github.com/user-attachments/assets/6dfce23d-c35a-43a6-83e3-f7ae2a575114)
-
-7. Pantalla de Calificación y Comentarios:
-   -Sección donde los usuarios pueden dejar opiniones y puntuaciones.
-   -Listado de comentarios de otros usuarios.
-   
-![image](https://github.com/user-attachments/assets/ed6b6e31-c6c9-4d0c-8e87-38da7b215ecd)
-
-9. Pantalla de Perfil Personal:
-   -Información del usuario.
-   -Lista de recetas guardadas, compartidas o publicadas, comunidad.
-   
-   ![image](https://github.com/user-attachments/assets/ff6a427f-8a82-42d4-9725-1d4d7d729ddd)
-   
-11. Pantalla de Comunidad
-   -Espacio para unirse o crear comunidades.
-   -Publicaciones y recetas compartidas por otros usuarios.
-    
-   ![image](https://github.com/user-attachments/assets/fcbd0264-026e-4c34-9ffd-db8b67eb80a8)
-   
-13. Pantalla de Ajustes
-   -Configuración de cuenta y preferencias.
-   -Opciones de notificaciones y privacidad.
-   -Cambio de idioma y tema de la aplicación.
-
-![image](https://github.com/user-attachments/assets/1e80ea94-6650-4d43-a7ef-2addeece7da1)
+    ![image](https://github.com/user-attachments/assets/c1058139-e727-4bdb-a941-5156c6cffe20)
 
 
-# Referencias
-- [IMAGEN 1: ].(https://lanoticia.com/noticias/usa/nc/clt/transforma-tu-salud-con-los-nuevos-cursos-de-cocina-saludable-para-la-comunidad-latina/)
--[IMAGEN 2: ](https://www.pngwing.com/es/free-png-agvle)
+### 2. Pantalla Principal de Recetas (Búsqueda y Listado)
+
+* Permite a los usuarios explorar una lista de recetas y buscar por nombre, ingredientes o tipo de comida.
+* Incluye opciones de filtrado para refinar los resultados de la búsqueda.
+
+    ![image](https://github.com/user-attachments/assets/80c2e5ba-8b22-4c46-8c42-a318780534b3)
+
+
+### 3. Pantalla de Recetas Favoritas
+
+* Muestra una lista personalizada de todas las recetas que el usuario ha guardado como favoritas.
+* Permite gestionar estas recetas, con opciones para eliminarlas o ver su vista detallada.
+
+    ![image](https://github.com/user-attachments/assets/ba10c678-300d-4b4d-8195-752db7e0a1d6)
+
+
+### 4. Pantalla de Perfil Personal
+
+* Presenta la información básica del usuario.
+* Incluye un listado de las recetas que el usuario ha guardado o publicado.
+
+   ![image](https://github.com/user-attachments/assets/499ffd27-a54b-4572-ac77-8007a3b09085)
+
+
+---
