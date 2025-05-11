@@ -38,5 +38,14 @@ A continuación, se presentan las pantallas clave de la aplicación "GastroGeniu
 
    ![image](https://github.com/user-attachments/assets/499ffd27-a54b-4572-ac77-8007a3b09085)
 
+### 4. Pantalla de agregar receta
+
+* Presenta unas opciones para que el usuario complete .
+* Incluye opcion para que pueda eligir una imagen para la receta .
+
+
+  ![image](https://github.com/user-attachments/assets/03960058-f2f3-4e21-809b-b9f1dbb900d3)
+
+
 
 ---
