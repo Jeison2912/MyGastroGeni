@@ -1,7 +1,6 @@
 name: Android CI
 
 on:
-  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -27,7 +26,7 @@ jobs:
     - name: Upload Testing APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug.apk
+        name: apk-debug.apk
         path: app/build/outputs/apk/debug/app-debug.apk
   firebase-test-lab:
     needs: build
@@ -36,14 +35,14 @@ jobs:
     - name: Download APK
       uses: actions/download-artifact@v4
       with:
-        name: app-debug.apk
+        name: apk-debug.apk
     - name: Display structure of downloaded files
       run: ls -R
     - id: 'auth'
       if: ${{ hashFiles('app-debug.apk') != '' }}
       uses: 'google-github-actions/auth@v2'
       with:
-        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
     - name: 'Set up Cloud SDK'
       if: ${{ hashFiles('app-debug.apk') != '' }}
       uses: 'google-github-actions/setup-gcloud@v2'
