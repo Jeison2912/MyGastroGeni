@@ -23,9 +23,11 @@
             android:name="com.example.mygastrogeni.ui.auth.RegistroActivity"
             android:theme="@style/Theme.MyGastroGeni.NoActionBar" />
 
-        <activity android:name="com.example.mygastrogeni.ui.home.DetalleRecetaActivity" />
+        <activity
+            android:name="com.example.mygastrogeni.ui.home.DetalleRecetaActivity" />
 
-        <activity android:name="com.example.mygastrogeni.ui.home.EditarRecetaActivity"
+        <activity
+            android:name="com.example.mygastrogeni.ui.home.EditarRecetaActivity"
             android:theme="@style/Theme.MyGastroGeni.NoActionBar"/>
 
         <activity

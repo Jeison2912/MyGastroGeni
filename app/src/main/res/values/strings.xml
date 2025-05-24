@@ -43,5 +43,7 @@
     <string name="no_tienes_favoritos">no_tienes_favoritos</string>
     <string name="lista_de_recetas">lista_de_recetas</string>
     <string name="lista_de_recetas_favoritas">lista_de_recetas_favoritas</string>
+    <string name="adjuntar_imagen_de_reseta">adjuntar imagen de reseta</string>
+    <string name="adjuntar_imagen_de_receta">Adjuntar Imagen de receta</string>
 
 </resources>
