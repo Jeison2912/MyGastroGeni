@@ -2,6 +2,7 @@ package com.example.mygastrogeni.ui.receta
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,15 @@ class RecetaFirebaseAdapter(private var listaRecetas: List<Receta>) :
 
         // Si la receta tiene una URL de imagen, la carga usando Picasso
         if (receta.imagenUri.isNotEmpty()) {
-            Picasso.get().load(receta.imagenUri).into(holder.imageReceta)
+            try {
+                // Convertir la cadena (String) de imagenUri a un objeto Uri
+                val imageUri = Uri.parse(receta.imagenUri)
+                Picasso.get().load(imageUri).into(holder.imageReceta)
+            } catch (e: Exception) {
+                // En caso de error (por ejemplo, URI inválida o archivo no encontrado),
+                // se muestra una imagen por defecto.
+                holder.imageReceta.setImageResource(R.drawable.fav1) // Imagen por defecto
+            }
         } else {
             holder.imageReceta.setImageResource(R.drawable.fav1) // Imagen por defecto
         }
@@ -56,7 +65,6 @@ class RecetaFirebaseAdapter(private var listaRecetas: List<Receta>) :
         return listaRecetas.size
     }
 
-    // Método para actualizar la lista de recetas
     fun actualizarLista(nuevaLista: List<Receta>) {
         listaRecetas = nuevaLista
         notifyDataSetChanged()

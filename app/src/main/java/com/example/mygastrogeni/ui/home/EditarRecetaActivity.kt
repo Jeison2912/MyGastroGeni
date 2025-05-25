@@ -98,7 +98,7 @@ class EditarRecetaActivity : AppCompatActivity() {
                     ingredientes = nuevosIngredientes,
                     pasos = nuevaPreparacion,
                     imagenUri = imagenUri ?: "",
-                    autor = SessionManager.getUsuario(this),
+                    autor = SessionManager.getUsername(this), // Asumiendo que SessionManager.getUsuario() devuelve un String
 
                 )
 

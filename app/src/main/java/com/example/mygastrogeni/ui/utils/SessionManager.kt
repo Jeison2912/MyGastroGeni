@@ -33,6 +33,11 @@ object SessionManager {
         }
     }
 
+    // ¡IMPORTANTE! Esta función DEBE llamarse getUsername, no getUsuario.
+    fun getUsername(context: Context): String {
+        return getPrefs(context).getString(KEY_USERNAME, "") ?: ""
+    }
+
     suspend fun saveEmail(context: Context, email: String) {
         withContext(Dispatchers.IO) {
             try {
@@ -41,6 +46,10 @@ object SessionManager {
                 Log.e("SessionManager", "Error saving email: ${e.message}", e)
             }
         }
+    }
+
+    fun getEmail(context: Context): String {
+        return getPrefs(context).getString(KEY_EMAIL, "") ?: ""
     }
 
     suspend fun saveDescripcion(context: Context, descripcion: String) {
@@ -53,6 +62,10 @@ object SessionManager {
         }
     }
 
+    fun getDescripcion(context: Context): String {
+        return getPrefs(context).getString(KEY_DESC, "") ?: ""
+    }
+
     suspend fun saveImagenPerfil(context: Context, uri: String) {
         withContext(Dispatchers.IO) {
             try {
@@ -61,18 +74,6 @@ object SessionManager {
                 Log.e("SessionManager", "Error saving profile image URI: ${e.message}", e)
             }
         }
-    }
-
-    fun getUsuario(context: Context): String {
-        return getPrefs(context).getString(KEY_USERNAME, "") ?: ""
-    }
-
-    fun getEmail(context: Context): String {
-        return getPrefs(context).getString(KEY_EMAIL, "") ?: ""
-    }
-
-    fun getDescripcion(context: Context): String {
-        return getPrefs(context).getString(KEY_DESC, "") ?: ""
     }
 
     fun getImagenPerfil(context: Context): String {

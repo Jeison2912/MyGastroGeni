@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.android.application")
     id("com.google.gms.google-services")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -63,5 +64,7 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    implementation ("com.google.firebase:firebase-storage-ktx")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
 }

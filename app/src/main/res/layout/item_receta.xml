@@ -4,18 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="6dp">
+    android:layout_marginBottom="6dp"
+    android:background="#2E2E2E"> <ImageView
+    android:id="@+id/imageReceta"
+    android:layout_width="334dp"
+    android:layout_height="222dp"
+    android:contentDescription="@string/descripcion_imagen_receta"
+    android:scaleType="centerCrop"
+    android:src="@drawable/fav1" app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.493"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageReceta"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/descripcion_imagen_receta"
+    <TextView
+        android:id="@+id/textNombreReceta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/amita"
+        android:padding="16dp"
+        android:text="Nombre de receta"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imageReceta" />
 
     <TextView
         android:id="@+id/textView9"
@@ -34,25 +47,13 @@
         android:visibility="gone"  />
 
     <TextView
-        android:id="@+id/textNombreReceta"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/amita"
-        android:padding="16dp"
-        android:text="Nombre de receta"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageReceta" />
-
-    <TextView
         android:id="@+id/textIngredientesReceta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/amita"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
         android:text="Ingredientes"
         android:textColor="@color/white"
         android:textSize="16sp"

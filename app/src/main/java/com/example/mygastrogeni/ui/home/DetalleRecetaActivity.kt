@@ -40,7 +40,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
         val autor = intent.getStringExtra("autor") ?: ""
         val recetaId = intent.getStringExtra("id") ?: ""
 
-        val usuarioActual = SessionManager.getUsuario(this)
+        val usuarioActual = SessionManager.getUsername(this)
 
         // Inicializar vistas
         val imagenReceta: ImageView = findViewById(R.id.imageDetalle)
@@ -51,7 +51,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
         val pasosReceta: TextView = findViewById(R.id.textPasos)
         val btnEliminar: Button = findViewById(R.id.btnEliminar)
         val btnEditar: Button = findViewById(R.id.btnEditar)
-        val btnAgregarReceta: Button = findViewById(R.id.btnAgregarReceta)
+
 
         // Mostrar datos de la receta
         tituloReceta.text = nombre
@@ -109,27 +109,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
         }
 
         // Lógica para agregar receta a Firestore (este bloque parece estar duplicado o no necesario aquí)
-        btnAgregarReceta.setOnClickListener {
-            val receta = hashMapOf(
-                "nombre" to nombre,
-                "ingredientes" to ingredientes,
-                "descripcion" to descripcion,
-                "pasos" to pasos,
-                "imagenUri" to imagenUri,
-                "autor" to mAuth.currentUser?.uid
-            )
 
-            db.collection("recetas")
-                .add(receta)
-                .addOnSuccessListener {
-                    Log.d("DetalleReceta", "Receta agregada con ID: ${it.id}")
-                    Toast.makeText(this, "Receta agregada exitosamente", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener { e ->
-                    Log.e("DetalleReceta", "Error al agregar receta: ${e.message}", e)
-                    Toast.makeText(this, "Error al agregar receta", Toast.LENGTH_SHORT).show()
-                }
-        }
 
         // Verificar si la receta ya está en favoritos al iniciar la actividad
         verificarEstadoFavorito(recetaId, iconoFavorito)
@@ -192,7 +172,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
                             iconoFavorito.setImageResource(R.drawable.favo)
                             iconoFavorito.tag = "favorito"
                         } else {
-                            iconoFavorito.setImageResource(R.drawable.favo)
+                            iconoFavorito.setImageResource(R.drawable.favorito)
                             iconoFavorito.tag = "no_favorito"
                         }
                     }
