@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -15,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/adjuntar" />
+            android:src="@drawable/adjuntar"
+            android:contentDescription="Imagen de la receta"/>
 
         <EditText
             android:id="@+id/editNombre"
@@ -27,9 +30,8 @@
             android:paddingBottom="12dp"
             android:backgroundTint="#CCCCCC"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray" />
+            android:textColorHint="@color/darkgray"  android:inputType="textCapSentences" />
 
-        <!-- CAMPO NUEVO: Descripción -->
         <EditText
             android:id="@+id/editDescripcion"
             android:layout_width="match_parent"
@@ -40,11 +42,29 @@
             android:paddingBottom="12dp"
             android:backgroundTint="#CCCCCC"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray"
-            android:inputType="textMultiLine"
+            android:textColorHint="@color/darkgray"  android:inputType="textMultiLine"
             android:lines="3"
             android:minLines="2"
             android:maxLines="5" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Categoría de la Receta"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/categorias_array"
+            android:padding="8dp"
+            android:textColor="@android:color/white"
+            android:minHeight="48dp"
+            android:contentDescription="Selecciona la categoría de la receta"/>
 
         <EditText
             android:id="@+id/editIngredientes"
@@ -56,7 +76,11 @@
             android:paddingBottom="12dp"
             android:backgroundTint="#CCCCCC"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray" />
+            android:textColorHint="@color/darkgray"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:minLines="2"
+            android:maxLines="5" />
 
         <EditText
             android:id="@+id/editPreparacion"
@@ -68,7 +92,11 @@
             android:paddingBottom="12dp"
             android:backgroundTint="#CCCCCC"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray" />
+            android:textColorHint="@color/darkgray"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="3"
+            android:maxLines="10" />
 
         <Button
             android:id="@+id/btnActualizar"
@@ -76,6 +104,6 @@
             android:layout_height="wrap_content"
             android:text="@string/actualizar"
             android:layout_marginTop="16dp" />
+
     </LinearLayout>
 </ScrollView>
-

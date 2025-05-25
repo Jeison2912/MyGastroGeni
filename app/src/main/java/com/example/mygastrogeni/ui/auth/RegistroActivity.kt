@@ -1,29 +1,29 @@
 package com.example.mygastrogeni.ui.auth
 
 import android.content.Intent
-import android.net.Uri
+import android.net.Uri // Se puede eliminar si no se usa en otro lugar, pero no causa daño
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+// import androidx.activity.result.contract.ActivityResultContracts // ELIMINADO: No se necesita el Launcher
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope // Importar lifecycleScope
-import com.example.mygastrogeni.MainActivity // Asegúrate de que esta es tu actividad principal después del registro
+import androidx.lifecycle.lifecycleScope
+import com.example.mygastrogeni.MainActivity
 import com.example.mygastrogeni.R
-import com.example.mygastrogeni.ui.models.User
-import com.example.mygastrogeni.ui.utils.SessionManager // Importar SessionManager
+import com.example.mygastrogeni.ui.models.User // Asumo que esta es tu clase de modelo de usuario
+import com.example.mygastrogeni.ui.utils.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.coroutines.Dispatchers
+import com.google.firebase.storage.FirebaseStorage // ELIMINADO: No se necesita Firebase Storage si no subes imágenes
+import kotlinx.coroutines.Dispatchers // Se puede eliminar si no se usa explícitamente en el ámbito
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.File
-import java.io.FileOutputStream
+import kotlinx.coroutines.withContext // Se puede eliminar si no se usa explícitamente en el ámbito
+// import de.hdodenhof.circleimageview.CircleImageView // ELIMINADO: No se necesita la vista de imagen circular
+// import java.io.File // ELIMINADO: No se necesita para manejar archivos temporales
+// import java.io.FileOutputStream // ELIMINADO: No se necesita para manejar archivos temporales
 
 class RegistroActivity : AppCompatActivity() {
 
@@ -32,45 +32,49 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var btnRegistrar: Button
     private lateinit var mAuth: FirebaseAuth
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var storage: FirebaseStorage
+    // private lateinit var storage: FirebaseStorage // ELIMINADO: No se necesita Firebase Storage
 
-    private lateinit var imageViewProfilePic: CircleImageView
-    private lateinit var btnSelectProfilePic: Button // Este botón debería estar en tu layout de registro para seleccionar la imagen
+    // ELIMINADO: Variables relacionadas con la imagen
+    // private lateinit var imageViewProfilePic: CircleImageView
+    // private lateinit var btnSelectProfilePic: Button
     private lateinit var editTextFullName: EditText
-    private lateinit var editTextConfirmPassword: EditText // <-- ¡LÍNEA CORREGIDA! Eliminada la "var" duplicada
+    private lateinit var editTextConfirmPassword: EditText
     private lateinit var textViewLogin: TextView
 
-    private var selectedImageUri: Uri? = null
+    // ELIMINADO: Variable para la URI de la imagen seleccionada
+    // private var selectedImageUri: Uri? = null
 
-    // Launcher para seleccionar imagen
-    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        if (uri != null) {
-            selectedImageUri = uri
-            imageViewProfilePic.setImageURI(uri)
-        }
-    }
+    // ELIMINADO: Launcher para seleccionar imagen
+    // private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+    //     if (uri != null) {
+    //         selectedImageUri = uri
+    //         imageViewProfilePic.setImageURI(uri)
+    //     }
+    // }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
 
         mAuth = FirebaseAuth.getInstance()
-        storage = FirebaseStorage.getInstance()
+        // storage = FirebaseStorage.getInstance() // ELIMINADO: No se inicializa Storage
 
-        // Inicialización de vistas (asegúrate de que los IDs en activity_registro.xml coincidan)
-        imageViewProfilePic = findViewById(R.id.imageViewProfilePic)
-        btnSelectProfilePic = findViewById(R.id.btnSelectProfilePic) // Este ID debe existir en tu layout de registro
+        // Inicialización de vistas (¡ATENCIÓN! Asegúrate que los IDs de imagen ya no están en tu XML)
+        // ELIMINADO: Vistas de imagen
+        // imageViewProfilePic = findViewById(R.id.imageViewProfilePic)
+        // btnSelectProfilePic = findViewById(R.id.btnSelectProfilePic)
+
         editTextFullName = findViewById(R.id.editTextFullName)
         editEmail = findViewById(R.id.editTextEmail)
         editPassword = findViewById(R.id.editTextPassword)
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword)
-        btnRegistrar = findViewById(R.id.buttonRegister) // Este ID debe existir en tu layout de registro
-        textViewLogin = findViewById(R.id.textViewLogin) // Este ID debe existir en tu layout de registro
+        btnRegistrar = findViewById(R.id.buttonRegister)
+        textViewLogin = findViewById(R.id.textViewLogin)
 
-        // Listeners
-        btnSelectProfilePic.setOnClickListener {
-            pickImageLauncher.launch("image/*")
-        }
+        // ELIMINADO: Listener para seleccionar imagen
+        // btnSelectProfilePic.setOnClickListener {
+        //     pickImageLauncher.launch("image/*")
+        // }
 
         btnRegistrar.setOnClickListener {
             registerUser()
@@ -111,12 +115,8 @@ class RegistroActivity : AppCompatActivity() {
                     val firebaseUser = mAuth.currentUser
                     val userId = firebaseUser?.uid ?: ""
 
-                    if (selectedImageUri != null) {
-                        subirImagenPerfilYGuardarDatos(userId, fullName, email, selectedImageUri!!)
-                    } else {
-                        // Si no se selecciona imagen, se guarda sin URL de imagen de perfil
-                        guardarDatosUsuarioEnFirestore(userId, fullName, email, "", "")
-                    }
+                    // Ya no hay selección de imagen, siempre se guarda sin URL de imagen de perfil
+                    guardarDatosUsuarioEnFirestore(userId, fullName, email, "", "") // profileImageUrl ahora es siempre ""
                 } else {
                     // Manejo de errores de autenticación
                     Log.e("RegistroActivity", "Error de registro en Auth: ${task.exception?.message}", task.exception)
@@ -125,70 +125,34 @@ class RegistroActivity : AppCompatActivity() {
             }
     }
 
-    private fun subirImagenPerfilYGuardarDatos(userId: String, fullName: String, email: String, imageUri: Uri) {
-        val tempFileUri = copiarImagenATemp(imageUri)
-        if (tempFileUri == null) {
-            Toast.makeText(this, "Error al preparar la imagen para subir. Registrando sin imagen.", Toast.LENGTH_SHORT).show()
-            guardarDatosUsuarioEnFirestore(userId, fullName, email, "", "") // Guardar sin imagen si falla la preparación
-            return
-        }
-
-        // Subir imagen a Firebase Storage
-        val storageRef = storage.reference.child("profile_pictures/${userId}.jpg")
-
-        storageRef.putFile(tempFileUri)
-            .addOnSuccessListener {
-                storageRef.downloadUrl.addOnSuccessListener { downloadUri ->
-                    val profileImageUrl = downloadUri.toString()
-                    guardarDatosUsuarioEnFirestore(userId, fullName, email, profileImageUrl, "")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("RegistroActivity", "Error al subir imagen de perfil: ${e.message}", e)
-                Toast.makeText(this, "Error al subir imagen de perfil. Registrando sin imagen.", Toast.LENGTH_SHORT).show()
-                guardarDatosUsuarioEnFirestore(userId, fullName, email, "", "") // Guardar sin imagen si falla la subida
-            }
-    }
-
-    // Función auxiliar para copiar la imagen seleccionada a un archivo temporal
-    private fun copiarImagenATemp(uri: Uri): Uri? {
-        return try {
-            contentResolver.openInputStream(uri)?.use { inputStream ->
-                val file = File.createTempFile("profile_pic_", ".jpg", cacheDir)
-                FileOutputStream(file).use { outputStream ->
-                    inputStream.copyTo(outputStream)
-                }
-                Uri.fromFile(file)
-            }
-        } catch (e: Exception) {
-            Log.e("RegistroActivity", "Error al copiar imagen a cache: ${e.message}", e)
-            null
-        }
-    }
+    // ELIMINADO: Métodos relacionados con la subida de imagen
+    // private fun subirImagenPerfilYGuardarDatos(userId: String, fullName: String, email: String, imageUri: Uri) { ... }
+    // private fun copiarImagenATemp(uri: Uri): Uri? { ... }
 
     private fun guardarDatosUsuarioEnFirestore(userId: String, fullName: String, email: String, profileImageUrl: String, description: String) {
         val user = User(
             uid = userId,
             fullName = fullName,
             email = email,
+            // profileImageUrl ya es "" aquí, porque siempre se le pasa así ahora
             profileImageUrl = profileImageUrl,
             description = description
         )
 
         // Guardar datos del usuario en Firestore
-        db.collection("usuarios") // Asegúrate que el nombre de tu colección sea "usuarios"
+        db.collection("usuarios")
             .document(userId)
             .set(user)
             .addOnSuccessListener {
                 Log.d("RegistroActivity", "Documento de usuario creado en Firestore")
                 Toast.makeText(this, "Registro exitoso y perfil creado.", Toast.LENGTH_SHORT).show()
 
-                // Guardar datos en SessionManager también
-                lifecycleScope.launch { // Usamos lifecycleScope.launch porque estamos en una Activity
+                // Guardar datos en SessionManager (profileImageUrl también será "" aquí)
+                lifecycleScope.launch {
                     SessionManager.saveUsername(this@RegistroActivity, fullName)
                     SessionManager.saveEmail(this@RegistroActivity, email)
-                    SessionManager.saveImagenPerfil(this@RegistroActivity, profileImageUrl)
-                    SessionManager.saveDescripcion(this@RegistroActivity, description) // Guardar descripción (vacía inicialmente)
+                    SessionManager.saveImagenPerfil(this@RegistroActivity, profileImageUrl) // Se guardará como ""
+                    SessionManager.saveDescripcion(this@RegistroActivity, description)
                 }
 
                 // Redirigir a la actividad principal y limpiar la pila de actividades
