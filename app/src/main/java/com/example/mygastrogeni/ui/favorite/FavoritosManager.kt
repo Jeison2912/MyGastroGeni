@@ -62,7 +62,7 @@ class FavoritosManager(private val context: Context) {
             Log.e("FavoritosManager", "Error al leer JSON para eliminar: ${e.message}")
             mutableListOf()
         }
-        recetas.removeAll { it.id == receta.id } // Usar ID para eliminar
+        recetas.removeAll { it.id == receta.id }
         val updatedJson = gson.toJson(recetas)
         editor.putString("recetas", updatedJson)
         editor.apply()

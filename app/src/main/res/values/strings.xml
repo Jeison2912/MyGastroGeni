@@ -26,7 +26,7 @@
     <string name="descripcion_favorito">Botón de favorito</string>
     <string name="nombre_de_usuario">Nombre de Usuario</string>
     <string name="usuario_example_com">usuario@example.com</string>
-    <string name="aqu_puedes_poner_una_breve_descripci_n_del_perfil">Aquí puedes poner una breve descripción del perfil.</string>
+    <string name="aqu_puedes_poner_una_breve_descripci_n_del_perfil"></string>
     <string name="guardar_cambios">Guardar Cambios</string>
     <string name="correo_electr_nico">Correo Electrónico</string>
     <string name="email_input_field">Email input field</string>

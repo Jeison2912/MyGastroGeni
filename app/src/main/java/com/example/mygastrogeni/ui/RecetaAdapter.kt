@@ -26,7 +26,7 @@ class RecetaAdapter(
     private val onFavoritoEliminado: ((Receta) -> Unit)? = null
 ) : RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {
 
-    private val favoritosManager = FavoritosManager(context) // Mantener para la lista principal
+    private val favoritosManager = FavoritosManager(context)
     private val db = FirebaseFirestore.getInstance()
     private val mAuth = FirebaseAuth.getInstance()
 
@@ -41,8 +41,8 @@ class RecetaAdapter(
             if (!receta.imagenUri.isNullOrEmpty()) {
                 Glide.with(context)
                     .load(receta.imagenUri)
-                    .placeholder(R.drawable.fav1) // Imagen de carga o mientras no se carga
-                    .error(R.drawable.fav1)       // Imagen a mostrar en caso de error de carga
+                    .placeholder(R.drawable.carga)
+                    .error(R.drawable.error)
                     .into(binding.imageReceta)
                 Log.d("RecetaAdapter", "Glide cargando imagen desde URI: ${receta.imagenUri}")
             } else {
@@ -57,7 +57,7 @@ class RecetaAdapter(
                     putExtra("ingredientes", receta.ingredientes)
                     putExtra("pasos", receta.pasos)
                     putExtra("imagenUri", receta.imagenUri)
-                    putExtra("id", receta.id) // Pasar el ID para la gestión de favoritos en DetalleReceta
+                    putExtra("id", receta.id)
                 }
                 context.startActivity(intent)
             }

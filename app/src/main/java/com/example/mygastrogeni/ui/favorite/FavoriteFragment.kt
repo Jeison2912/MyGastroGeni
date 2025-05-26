@@ -33,7 +33,7 @@ class FavoriteFragment : Fragment() {
 
         recetaAdapter = RecetaAdapter(
             requireContext(),
-            mutableListOf(), // Inicialmente lista mutable vacía
+            mutableListOf(),
             modoFavoritos = true
         ) { recetaEliminada ->
             favoriteViewModel.removeFavorite(recetaEliminada.id)
@@ -42,7 +42,7 @@ class FavoriteFragment : Fragment() {
         recyclerView.adapter = recetaAdapter
 
         favoriteViewModel.favoriteRecipes.observe(viewLifecycleOwner, Observer { recetas ->
-            recetaAdapter.updateList(recetas) // **Usar updateList() en lugar de submitList()**
+            recetaAdapter.updateList(recetas)
             mostrarMensajeSiListaVacia(recetas.isEmpty())
         })
 

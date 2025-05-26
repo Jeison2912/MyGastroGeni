@@ -31,7 +31,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_receta)
 
-        // Obtener datos de la receta del Intent
+
         val nombre = intent.getStringExtra("nombre") ?: "Sin nombre"
         val descripcion = intent.getStringExtra("descripcion") ?: "Sin descripción"
         val ingredientes = intent.getStringExtra("ingredientes") ?: "Sin ingredientes"
@@ -42,9 +42,9 @@ class DetalleRecetaActivity : AppCompatActivity() {
 
         val usuarioActual = SessionManager.getUsername(this)
 
-        // Inicializar vistas
+
         val imagenReceta: ImageView = findViewById(R.id.imageDetalle)
-        val iconoFavorito: ImageView = findViewById(R.id.imageView4) // Obtén la referencia al ImageView de favoritos
+        val iconoFavorito: ImageView = findViewById(R.id.imageView4)
         val tituloReceta: TextView = findViewById(R.id.textTitulo)
         val descripcionReceta: TextView = findViewById(R.id.textDescripcion)
         val ingredientesReceta: TextView = findViewById(R.id.textIngredientes)
@@ -53,24 +53,22 @@ class DetalleRecetaActivity : AppCompatActivity() {
         val btnEditar: Button = findViewById(R.id.btnEditar)
 
 
-        // Mostrar datos de la receta
         tituloReceta.text = nombre
         descripcionReceta.text = descripcion
         ingredientesReceta.text = ingredientes
         pasosReceta.text = pasos
 
-        // Cargar la imagen con Glide
         if (imagenUri.isNotEmpty()) {
             Glide.with(this)
                 .load(imagenUri)
-                .placeholder(R.drawable.fav1) // O un placeholder adecuado
-                .error(R.drawable.fav1)       // O una imagen de error adecuada
+                .placeholder(R.drawable.fav1)
+                .error(R.drawable.fav1)
                 .into(imagenReceta)
         } else {
             imagenReceta.setImageResource(R.drawable.fav1)
         }
 
-        // Mostrar botones de editar/eliminar solo si el usuario actual es el autor
+
         if (autor == usuarioActual && recetaId.isNotEmpty()) {
             btnEditar.visibility = View.VISIBLE
             btnEliminar.visibility = View.VISIBLE
@@ -79,7 +77,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
             btnEliminar.visibility = View.GONE
         }
 
-        // Eliminar receta de Firestore
+
         btnEliminar.setOnClickListener {
             db.collection("recetas")
                 .document(recetaId)
@@ -94,7 +92,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
                 }
         }
 
-        // Editar receta: Redirige a la pantalla de edición
+
         btnEditar.setOnClickListener {
             val intent = Intent(this, EditarRecetaActivity::class.java).apply {
                 putExtra("id", recetaId)
@@ -108,14 +106,10 @@ class DetalleRecetaActivity : AppCompatActivity() {
             finish()
         }
 
-        // Lógica para agregar receta a Firestore (este bloque parece estar duplicado o no necesario aquí)
-
-
-        // Verificar si la receta ya está en favoritos al iniciar la actividad
         verificarEstadoFavorito(recetaId, iconoFavorito)
     }
 
-    // Función para manejar el clic en el icono de favoritos
+
     fun toggleFavorito(view: View) {
         val usuarioActual = mAuth.currentUser
         if (usuarioActual == null) {
@@ -131,11 +125,11 @@ class DetalleRecetaActivity : AppCompatActivity() {
             val recetasFavoritasRef = db.collection("usuarios").document(usuarioId)
 
             if (imageViewFavorito.tag == "no_favorito") {
-                // Agregar a favoritos
+
                 recetasFavoritasRef.update("recetasFavoritas", FieldValue.arrayUnion(recetaId))
                     .addOnSuccessListener {
                         Toast.makeText(this, "Agregado a favoritos", Toast.LENGTH_SHORT).show()
-                        imageViewFavorito.setImageResource(R.drawable.favo) // Cambia el icono a la versión "llena"
+                        imageViewFavorito.setImageResource(R.drawable.favo)
                         imageViewFavorito.tag = "favorito"
                     }
                     .addOnFailureListener { e ->
@@ -143,11 +137,10 @@ class DetalleRecetaActivity : AppCompatActivity() {
                         Toast.makeText(this, "Error al agregar a favoritos", Toast.LENGTH_SHORT).show()
                     }
             } else {
-                // Eliminar de favoritos
                 recetasFavoritasRef.update("recetasFavoritas", FieldValue.arrayRemove(recetaId))
                     .addOnSuccessListener {
                         Toast.makeText(this, "Eliminado de favoritos", Toast.LENGTH_SHORT).show()
-                        imageViewFavorito.setImageResource(R.drawable.favo) // Restaura el icono original
+                        imageViewFavorito.setImageResource(R.drawable.favo)
                         imageViewFavorito.tag = "no_favorito"
                     }
                     .addOnFailureListener { e ->

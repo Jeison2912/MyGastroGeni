@@ -28,23 +28,21 @@ class RecetaFirebaseAdapter(private var listaRecetas: List<Receta>) :
     override fun onBindViewHolder(holder: RecetaViewHolder, position: Int) {
         val receta = listaRecetas[position]
 
-        // Vincula los datos con las vistas del layout
+
         holder.textNombre.text = receta.nombre
         holder.textIngredientes.text = receta.ingredientes
 
-        // Si la receta tiene una URL de imagen, la carga usando Picasso
+
         if (receta.imagenUri.isNotEmpty()) {
             try {
-                // Convertir la cadena (String) de imagenUri a un objeto Uri
+
                 val imageUri = Uri.parse(receta.imagenUri)
                 Picasso.get().load(imageUri).into(holder.imageReceta)
             } catch (e: Exception) {
-                // En caso de error (por ejemplo, URI inválida o archivo no encontrado),
-                // se muestra una imagen por defecto.
-                holder.imageReceta.setImageResource(R.drawable.fav1) // Imagen por defecto
+                holder.imageReceta.setImageResource(R.drawable.fav1)
             }
         } else {
-            holder.imageReceta.setImageResource(R.drawable.fav1) // Imagen por defecto
+            holder.imageReceta.setImageResource(R.drawable.fav1)
         }
 
         holder.itemView.setOnClickListener {
@@ -55,7 +53,7 @@ class RecetaFirebaseAdapter(private var listaRecetas: List<Receta>) :
                 putExtra("ingredientes", receta.ingredientes)
                 putExtra("pasos", receta.pasos)
                 putExtra("imagenUri", receta.imagenUri)
-                putExtra("autor", receta.autor) // Añadido el autor
+                putExtra("autor", receta.autor)
             }
             context.startActivity(intent)
         }
@@ -70,7 +68,6 @@ class RecetaFirebaseAdapter(private var listaRecetas: List<Receta>) :
         notifyDataSetChanged()
     }
 
-    // ViewHolder para cada ítem de la lista
     class RecetaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textNombre: TextView = itemView.findViewById(R.id.textNombreReceta)
         val textIngredientes: TextView = itemView.findViewById(R.id.textIngredientesReceta)

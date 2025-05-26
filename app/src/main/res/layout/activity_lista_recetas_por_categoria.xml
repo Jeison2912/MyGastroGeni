@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.ListaRecetasPorCategoriaActivity">
+
+    <TextView
+        android:id="@+id/textTituloCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Nombre de la Categoría"
+        android:background="?attr/colorPrimary"
+        android:textColor="?attr/colorOnPrimary"/>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchViewRecetasPorCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:queryHint="Buscar receta..."
+        app:iconifiedByDefault="false"
+        android:contentDescription="@string/descripcion_buscar_recetas_categoria"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewRecetasPorCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_receta"
+        android:contentDescription="@string/lista_de_recetas_filtradas"/>
+</LinearLayout>

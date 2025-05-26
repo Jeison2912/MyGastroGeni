@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.content.edit
-import com.google.firebase.auth.FirebaseAuth // ¡IMPORTAR ESTO!
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -87,19 +87,15 @@ object SessionManager {
     }
 
     fun isLoggedIn(context: Context): Boolean {
-        // También deberías verificar si el usuario de Firebase Auth está logueado aquí.
-        // Si SharedPreferences dice que sí, pero Firebase no, entonces no está logueado.
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         return getPrefs(context).getBoolean(KEY_LOGGED_IN, false) && (firebaseUser != null)
     }
 
     fun logout(context: Context) {
-        // 1. Limpiar SharedPreferences
         getPrefs(context).edit {
             clear()
             apply()
         }
-        // 2. Cerrar sesión de Firebase Authentication
         FirebaseAuth.getInstance().signOut()
         Log.d("SessionManager", "Sesión de Firebase Authentication cerrada.")
     }

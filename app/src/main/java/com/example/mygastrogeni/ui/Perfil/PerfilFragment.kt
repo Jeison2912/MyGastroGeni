@@ -43,7 +43,7 @@ class PerfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setEditMode(false) // Inicia en modo no editable
+        setEditMode(false)
 
         loadSavedData()
 
@@ -77,8 +77,6 @@ class PerfilFragment : Fragment() {
 
     private fun loadSavedData() {
         lifecycleScope.launch {
-            // **IMPORTANTE: Aquí se llama a SessionManager.getUsername(requireContext())**
-            // **Este método debe existir en SessionManager.kt como se muestra a continuación.**
             val nombreGuardado = withContext(Dispatchers.IO) { SessionManager.getUsername(requireContext()) }
             val emailGuardado = withContext(Dispatchers.IO) { SessionManager.getEmail(requireContext()) }
             val descripcionGuardada = withContext(Dispatchers.IO) { SessionManager.getDescripcion(requireContext()) }
@@ -148,7 +146,7 @@ class PerfilFragment : Fragment() {
 
     private fun signOut() {
         lifecycleScope.launch {
-            SessionManager.logout(requireContext()) // Asegúrate de que este método borre todos los datos
+            SessionManager.logout(requireContext())
             withContext(Dispatchers.Main) {
                 Toast.makeText(requireContext(), "Sesión cerrada.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(requireActivity(), LoginActivity::class.java)

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="6dp"
-    android:background="#2E2E2E"> <ImageView
+    android:background="#2E2E2E">
+
+    <ImageView
     android:id="@+id/imageReceta"
     android:layout_width="334dp"
     android:layout_height="222dp"

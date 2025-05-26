@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Imagen de fondo -->
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:src="@drawable/fondo1"
         android:contentDescription="@string/fondo_de_login" />
 
-    <!-- Título superior -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_marginTop="4dp"/>
     </LinearLayout>
 
-    <!-- Contenido principal -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

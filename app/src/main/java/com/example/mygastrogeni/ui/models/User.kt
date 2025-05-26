@@ -7,6 +7,6 @@ data class User(
     val uid: String = "",
     val fullName: String = "",
     val email: String = "",
-    val profileImageUrl: String = "", // ¡Aquí está!
+    val profileImageUrl: String = "",
     val description: String = ""
 ) : Parcelable

@@ -27,13 +27,13 @@ class RecetaViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun obtenerRecetasEnTiempoReal() {
-        firestoreListener?.remove() // Detiene cualquier escucha anterior
+        firestoreListener?.remove()
 
         firestoreListener = db.collection("recetas")
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     Log.w("RecetaViewModel", "Error al escuchar recetas: ${e.message}", e)
-                    _todasLasRecetas.value = emptyList() // O manejar el error visualmente
+                    _todasLasRecetas.value = emptyList()
                     return@addSnapshotListener
                 }
 
@@ -43,7 +43,7 @@ class RecetaViewModel(application: Application) : AndroidViewModel(application) 
                         try {
                             val receta = doc.toObject(Receta::class.java)
                             receta?.let {
-                                it.id = doc.id // Asignar el ID del documento
+                                it.id = doc.id
                                 recetasList.add(it)
                             }
                         } catch (parseException: Exception) {
@@ -75,7 +75,7 @@ class RecetaViewModel(application: Application) : AndroidViewModel(application) 
     fun actualizar(id: String, receta: Receta, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
         db.collection("recetas")
             .document(id)
-            .set(receta) // .set() sobrescribe todo el documento. Si solo quieres actualizar campos específicos, usa .update()
+            .set(receta)
             .addOnSuccessListener {
                 Log.d("RecetaViewModel", "Receta actualizada con éxito en Firestore. ID: $id")
                 onSuccess()
@@ -86,7 +86,7 @@ class RecetaViewModel(application: Application) : AndroidViewModel(application) 
             }
     }
 
-    // Método para eliminar una receta (opcional, pero útil)
+
     fun eliminarReceta(recetaId: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
         db.collection("recetas").document(recetaId)
             .delete()
@@ -102,7 +102,7 @@ class RecetaViewModel(application: Application) : AndroidViewModel(application) 
 
     override fun onCleared() {
         super.onCleared()
-        firestoreListener?.remove() // ¡Importante! Detener la escucha de Firebase
+        firestoreListener?.remove()
         Log.d("RecetaViewModel", "Listener de Firestore removido en onCleared.")
     }
 }

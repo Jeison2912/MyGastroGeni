@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log // ¡Añadir esta importación!
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -18,7 +18,7 @@ import com.example.mygastrogeni.R
 import com.example.mygastrogeni.ui.utils.SessionManager
 import com.example.mygastrogeni.ui.viewmodel.RecetaViewModel
 import java.io.FileNotFoundException
-import com.example.mygastrogeni.ui.utils.capitalizeWords // Importa la función de extensión
+import com.example.mygastrogeni.ui.utils.capitalizeWords
 
 class EditarRecetaActivity : AppCompatActivity() {
 
@@ -62,13 +62,11 @@ class EditarRecetaActivity : AppCompatActivity() {
         spinnerCategoria = findViewById(R.id.spinnerCategoria)
         btnActualizar = findViewById(R.id.btnActualizar)
 
-        // Usa el string-array unificado (ej. categorias_array)
         val categoriasArray = resources.getStringArray(R.array.categorias_array)
         val adapterSpinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, categoriasArray)
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCategoria.adapter = adapterSpinner
 
-        // Recopilar datos de la receta si se está editando una existente
         recetaId = intent.getStringExtra("id") ?: ""
         val nombre = intent.getStringExtra("nombre") ?: ""
         val descripcion = intent.getStringExtra("descripcion") ?: ""
@@ -77,21 +75,17 @@ class EditarRecetaActivity : AppCompatActivity() {
         imagenUri = intent.getStringExtra("imagenUri")
         val categoriaRecetaExistente = intent.getStringExtra("categoria") ?: ""
 
-        // Cargar datos en la UI
         editNombre.setText(nombre)
         editDescripcion.setText(descripcion)
         editIngredientes.setText(ingredientes)
         editPreparacion.setText(preparacion)
 
-        // Seleccionar la categoría existente en el Spinner (importante normalizar)
         if (categoriaRecetaExistente.isNotEmpty()) {
             val categoriaNormalizadaExistente = categoriaRecetaExistente.trim().capitalizeWords()
             val categoriaIndex = categoriasArray.indexOf(categoriaNormalizadaExistente)
             if (categoriaIndex >= 0) {
                 spinnerCategoria.setSelection(categoriaIndex)
             } else {
-                // Opcional: si la categoría existente no está en el spinner, puedes añadirla programáticamente
-                // o mostrar un mensaje. Por ahora, simplemente no la selecciona.
             }
         }
 
@@ -115,7 +109,6 @@ class EditarRecetaActivity : AppCompatActivity() {
             val nuevosIngredientes = editIngredientes.text.toString().trim()
             val nuevaPreparacion = editPreparacion.text.toString().trim()
 
-            // NORMALIZAR LA CATEGORÍA ANTES DE GUARDAR
             val nuevaCategoria = spinnerCategoria.selectedItem?.toString()?.trim()?.capitalizeWords() ?: ""
 
             Log.d("EditarReceta", "Categoría seleccionada (normalizada) para actualizar: '$nuevaCategoria'")
@@ -124,7 +117,6 @@ class EditarRecetaActivity : AppCompatActivity() {
                 nuevosIngredientes.isNotEmpty() && nuevaPreparacion.isNotEmpty() &&
                 nuevaCategoria.isNotEmpty()
             ) {
-                // Desactivar el botón para evitar múltiples clics
                 btnActualizar.isEnabled = false
 
                 val recetaActualizada = Receta(
@@ -135,31 +127,29 @@ class EditarRecetaActivity : AppCompatActivity() {
                     pasos = nuevaPreparacion,
                     imagenUri = imagenUri ?: "",
                     autor = SessionManager.getUsername(this),
-                    categoria = nuevaCategoria // Usar la categoría normalizada
+                    categoria = nuevaCategoria
                 )
 
                 if (recetaId.isNotEmpty()) {
-                    // Si recetaId no está vacío, significa que es una edición
                     viewModel.actualizar(recetaId, recetaActualizada,
                         onSuccess = {
                             Toast.makeText(this, "Receta actualizada con éxito", Toast.LENGTH_SHORT).show()
-                            finish() // Cierra la actividad después de la actualización exitosa
+                            finish()
                         },
                         onFailure = { errorMessage ->
                             Toast.makeText(this, "Error al actualizar receta: $errorMessage", Toast.LENGTH_LONG).show()
-                            btnActualizar.isEnabled = true // Re-habilitar botón
+                            btnActualizar.isEnabled = true
                         }
                     )
                 } else {
-                    // Si recetaId está vacío, significa que es una nueva receta
                     viewModel.agregarReceta(recetaActualizada,
                         onSuccess = {
                             Toast.makeText(this, "Receta agregada con éxito", Toast.LENGTH_SHORT).show()
-                            finish() // Cierra la actividad después de agregar exitosamente
+                            finish()
                         },
                         onFailure = { errorMessage ->
                             Toast.makeText(this, "Error al agregar receta: $errorMessage", Toast.LENGTH_LONG).show()
-                            btnActualizar.isEnabled = true // Re-habilitar botón
+                            btnActualizar.isEnabled = true
                         }
                     )
                 }

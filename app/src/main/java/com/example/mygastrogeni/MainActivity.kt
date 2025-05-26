@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity() {
             navigateToLogin()
         } else {
             Log.d("MainActivity", "Usuario autenticado (Firebase). Continuando en MainActivity")
-            // Aquí puedes agregar lógica adicional si necesitas cargar datos del usuario al inicio
         }
     }
 

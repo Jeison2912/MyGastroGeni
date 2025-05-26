@@ -27,12 +27,12 @@ import com.example.mygastrogeni.ui.utils.SessionManager
 import com.example.mygastrogeni.ui.viewmodel.RecetaViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import com.example.mygastrogeni.ui.utils.capitalizeWords // Importa la función de extensión
+import com.example.mygastrogeni.ui.utils.capitalizeWords
 
 class AgregarFragment : Fragment() {
 
     private lateinit var editNombre: EditText
-    private lateinit var editDescripcion: EditText // Si existe en fragment_agregar.xml, descomenta esta línea
+    private lateinit var editDescripcion: EditText
     private lateinit var editIngredientes: EditText
     private lateinit var editPreparacion: EditText
     private lateinit var spinnerCategoria: Spinner
@@ -96,15 +96,13 @@ class AgregarFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_agregar, container, false)
 
         editNombre = view.findViewById(R.id.editNombreReceta)
-        // Descomenta la siguiente línea si tienes editDescripcion en tu fragment_agregar.xml
-        // editDescripcion = view.findViewById(R.id.editDescripcion)
         editIngredientes = view.findViewById(R.id.editIngredientes)
         editPreparacion = view.findViewById(R.id.editPreparacion)
         spinnerCategoria = view.findViewById(R.id.spinnerCategoria)
         btnGuardar = view.findViewById(R.id.btnGuardarReceta)
         imageView = view.findViewById(R.id.adjuntar)
 
-        // Usa el string-array unificado (ej. categorias_array)
+
         val categoriasArray = resources.getStringArray(R.array.categorias_array)
         val adapterSpinner = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categoriasArray)
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -149,14 +147,14 @@ class AgregarFragment : Fragment() {
 
     private fun guardarReceta() {
         val nombre = editNombre.text.toString().trim()
-        val descripcion = if (::editDescripcion.isInitialized) editDescripcion.text.toString().trim() else "" // Manejo si editDescripcion no está inicializada
+        val descripcion = if (::editDescripcion.isInitialized) editDescripcion.text.toString().trim() else ""
         val ingredientes = editIngredientes.text.toString().trim()
         val preparacion = editPreparacion.text.toString().trim()
         val imagenUriString = imagenUri?.toString() ?: ""
         val autor = SessionManager.getUsername(requireContext())
         val fechaCreacion = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
 
-        // NORMALIZAR LA CATEGORÍA ANTES DE GUARDAR
+
         val categoriaSeleccionada = spinnerCategoria.selectedItem?.toString()?.trim()?.capitalizeWords() ?: ""
 
         Log.d("AgregarFragment", "Categoría seleccionada (normalizada) para guardar: '$categoriaSeleccionada'")
@@ -167,7 +165,7 @@ class AgregarFragment : Fragment() {
             Toast.makeText(requireContext(), "Por favor, selecciona una imagen para la receta", Toast.LENGTH_SHORT).show()
         }
         else {
-            // Desactivar el botón para evitar múltiples clics
+
             btnGuardar.isEnabled = false
 
             val nuevaReceta = Receta(
@@ -178,19 +176,19 @@ class AgregarFragment : Fragment() {
                 imagenUri = imagenUriString,
                 autor = autor ?: "",
                 fechaCreacion = fechaCreacion,
-                categoria = categoriaSeleccionada // Usar la categoría normalizada
+                categoria = categoriaSeleccionada
             )
 
             recetaViewModel.agregarReceta(nuevaReceta,
                 onSuccess = {
                     Toast.makeText(requireContext(), "Receta agregada con éxito", Toast.LENGTH_SHORT).show()
                     limpiarCampos()
-                    findNavController().popBackStack() // Navegar de vuelta al HomeFragment
-                    btnGuardar.isEnabled = true // Re-habilitar botón
+                    findNavController().popBackStack()
+                    btnGuardar.isEnabled = true
                 },
                 onFailure = { errorMessage ->
                     Toast.makeText(requireContext(), "Error al agregar receta: $errorMessage", Toast.LENGTH_LONG).show()
-                    btnGuardar.isEnabled = true // Re-habilitar botón en caso de error
+                    btnGuardar.isEnabled = true
                 }
             )
         }
@@ -198,11 +196,9 @@ class AgregarFragment : Fragment() {
 
     private fun limpiarCampos() {
         editNombre.text.clear()
-        // Si tienes editDescripcion en tu layout, descomenta la siguiente línea:
-        // if (::editDescripcion.isInitialized) editDescripcion.text.clear()
         editIngredientes.text.clear()
         editPreparacion.text.clear()
-        spinnerCategoria.setSelection(0) // Restablecer el spinner a la primera opción
+        spinnerCategoria.setSelection(0)
         imageView.setImageResource(R.drawable.adjuntar)
         imagenUri = null
     }
