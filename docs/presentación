@@ -1,0 +1,48 @@
+### Presentación de MyGastroGeni (GastroGenius)
+
+  ## Título
+Título: GastroGenius: Tu Asistente Culinario Personal
+Subtítulo: Organiza, Descubre y Disfruta tus Recetas Favoritas
+
+  ## Problema o Idea del Proyecto
+
+  1. El Problema: En el día a día, a menudo nos enfrentamos al desafío de qué cocinar, cómo organizar nuestras recetas favoritas (que están en papeles, fotos o guardadas en diferentes lugares) y cómo encontrar inspiración de forma rápida y sencilla. Esto puede llevar a la frustración, la repetición de platos o la dependencia de libros de cocina físicos y búsquedas fragmentadas en internet.
+  2. Nuestra Idea: Crear una plataforma digital unificada que centralice la gestión de recetas, ofrezca descubrimiento intuitivo y facilite la organización personal culinaria.
+
+    ## ¿Cómo se Propone Solucionarlo?
+
+  1. Una Solución Centralizada: GastroGenius ofrece una aplicación móvil intuitiva que sirve como tu cuaderno de cocina digital.
+  2. Creación y Almacenamiento Sencillo: Permite a los usuarios guardar sus propias recetas (con nombre, ingredientes, pasos) de forma digital y acceder a ellas desde cualquier lugar.
+  3. Organización Inteligente: Facilita la categorización automática y manual de recetas, haciendo que encontrar el plato perfecto para cada ocasión sea cuestión de segundos.
+  4. Inspiración al Alcance: Proporciona un espacio para descubrir nuevas recetas a través de la navegación por categorías y futuras funcionalidades de búsqueda avanzada.
+  5. Acceso Rápido a Favoritos: Con un sistema de favoritos fácil de usar, las recetas más apreciadas están siempre al alcance de un toque.
+
+    ## Características Clave
+    ### Gestión de Recetas Personalizadas:
+  1. Creación y Edición: Agrega tus propias recetas con detalles como nombre, descripción, ingredientes y pasos. Puedes editarlas en cualquier momento.
+  2. Visualización Detallada: Accede a una vista completa de cada receta, incluyendo toda la información necesaria para su preparación.
+    ### Organización por Categorías Inteligente:
+  1. Exploración Intuitiva: Navega por tus recetas mediante categorías claras y visuales (Desayuno, Almuerzo, Cena, Postre, Bebida, Vegetariana, etc.).
+  2. Categorías Dinámicas: La aplicación detecta y organiza tus recetas por categorías de forma inteligente.
+  3. Búsqueda Rápida: Encuentra recetas específicas dentro de cada categoría con una barra de búsqueda integrada.  
+    ###Recetas Favoritas y Sincronizadas:
+  1. Guarda tus Preferidas: Marca cualquier receta como favorita para acceder a ella rápidamente desde tu sección de Favoritos.
+  2. Sincronización en la Nube: Tus favoritos se guardan de forma segura en la nube para que no los pierdas y estén disponibles en cualquier dispositivo.
+    ###Gestión de Usuario Segura:
+  1. Registro y Autenticación: Crea tu cuenta de forma sencilla y segura con correo y contraseña.
+  2. Perfiles de Usuario: Mantén tu información personal básica en un perfil dedicado.
+  3. Cierre de Sesión Completo: Al cerrar sesión, la aplicación te redirige directamente a la pantalla de inicio de sesión, asegurando que tu cuenta esté protegida. 
+  ## Tecnologías Usadas
+   ###Desarrollo Android Nativo con Kotlin:
+  1. Lenguaje de Programación: Kotlin, moderno, seguro y conciso para el desarrollo Android.
+  2. Rendimiento y Experiencia de Usuario: Ofrece una aplicación fluida y responsiva.
+   ###Firebase como Backend Centralizado:
+  1. Firestore Database: Base de datos NoSQL para almacenamiento seguro y escalable de recetas y datos de usuario, con sincronización en tiempo real.
+  2. Firebase Storage: Almacenamiento eficiente de imágenes de recetas en la nube para acceso rápido.
+  3. Firebase Authentication: Sistema robusto para el registro y autenticación de usuarios.
+   ###Arquitectura de Software MVVM:
+  1. Modelo-Vista-ViewModel: Promueve un código limpio, modular y mantenible, facilitando el desarrollo y futuras expansiones.
+  2. LiveData: Componente clave para crear interfaces de usuario reactivas que se actualizan automáticamente con los cambios en los datos.
+   ###Librerías Adicionales Clave:
+  1. Glide: Para una carga de imágenes eficiente y optimizada.
+  2. Navigation Component: Para gestionar la navegación fluida y coherente entre las diferentes pantallas de la aplicación.
